@@ -2,7 +2,7 @@
 <div>
 <h1>My tickets</h1>
 
-<div v-for="data in tickets" :key="tickets._id">
+<div v-for="data in tickets" :key="data._id">
   <Ticket :ticketData="data" />
 </div>
 
