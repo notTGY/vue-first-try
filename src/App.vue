@@ -1,17 +1,44 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Navbar
+      :toggleSidebar="updateS"
+      :setMainWindow="setMainWindow"
+    />
+    <div class="vertical-align">
+      <Sidebar :shown="this.shown" :setMainWindow="setMainWindow" />
+      <MainWindow :state="mainWindowState" :api_url="this.API_URL" />
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Navbar from './components/Navbar.vue'
+import Sidebar from './components/Sidebar.vue'
+import MainWindow from './components/MainWindow.vue'
+
 
 export default {
   name: 'App',
+  data: ()=>{
+    return {
+      shown: false,
+      mainWindowState : 'home',
+      API_URL: 'https://cors-anywhere.herokuapp.com/https://hello-wo.herokuapp.com/api'
+    }
+  },
   components: {
-    HelloWorld
+    Navbar,
+    Sidebar,
+    MainWindow
+  },
+  methods: {
+    updateS () {
+      this.shown = !this.shown;
+    },
+    setMainWindow(e) {
+      this.mainWindowState = e;
+      console.log(e)
+    }
   }
 }
 </script>
@@ -23,6 +50,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+.vertical-align {
+  display: flex;
+  flex-direction: row;
+
 }
 </style>
