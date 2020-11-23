@@ -20,7 +20,7 @@
 <script>
 export default {
   props: {
-    'api_url': String.
+    'api_url': String,
     'token': String
   },
   data: ()=>{
