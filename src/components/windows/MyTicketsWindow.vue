@@ -14,7 +14,8 @@ import Ticket from '@/components/Ticket.vue'
 
 export default {
   props: {
-    'api_url': String
+    'api_url': String,
+    'token': String
   },
   data: () => {
     return {
@@ -23,7 +24,7 @@ export default {
   },
   mounted() {
     console.log('hi')
-    fetch(this.api_url+'/tickets')
+    fetch(`${this.api_url}/tickets?token=${token}`)
     .then(response => response.json())
     .then((result) => {
       this.tickets = result;

@@ -6,6 +6,7 @@
   <div class="row">
     <input type="text" v-model="ticket.filenames" />
     <input type="text" v-model="ticket.type" />
+    <input type="text" v-model="ticket.email_to" />
   </div>
   <div class="row">
     <textarea rows="3" v-model="ticket.text" />
@@ -19,7 +20,8 @@
 <script>
 export default {
   props: {
-    'api_url': String
+    'api_url': String.
+    'token': String
   },
   data: ()=>{
     return {
@@ -27,23 +29,25 @@ export default {
         mail: '',
         text: 'text',
         type: 'type',
-        filenames: 'filenames'
+        filenames: 'filenames',
+        email_to: 'email to'
       }
     }
   },
   name: 'SendNewTicketWindow',
   methods: {
     addTicket() {
-      fetch(this.api_url+'/tickets', {
+      fetch(`${this.api_url}/tickets?token=${token}`, {
         method: 'POST',
         body: JSON.stringify(this.ticket),
         headers: {
           'content-type': 'application/json',
         }
-      });
+      }).catch(e=>{console.error(e)})
       this.ticket.filenames = 'filenames';
       this.ticket.text = 'text';
       this.ticket.type = 'type';
+      this.ticket.email_to = 'email to';
     }
   }
 }

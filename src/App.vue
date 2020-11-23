@@ -6,7 +6,12 @@
     />
     <div class="vertical-align">
       <Sidebar :shown="this.shown" :setMainWindow="setMainWindow" />
-      <MainWindow :state="mainWindowState" :api_url="this.API_URL" />
+      <MainWindow
+        :state="mainWindowState"
+        :api_url="this.API_URL"
+        :setToken="setToken"
+        :token="this.token"
+      />
     </div>
   </div>
 </template>
@@ -16,8 +21,6 @@ import Navbar from './components/Navbar.vue'
 import Sidebar from './components/Sidebar.vue'
 import MainWindow from './components/MainWindow.vue'
 
-//const heroku_url = 'https://cors-anywhere.herokuapp.com/https://hello-wo.herokuapp.com/api';
-//const localhost_url = 'localhost:1000/api'
 
 export default {
   name: 'App',
@@ -25,7 +28,8 @@ export default {
     return {
       shown: false,
       mainWindowState : 'home',
-      API_URL: 'https://cors-anywhere.herokuapp.com/https://hello-wo.herokuapp.com/api'
+      API_URL: 'https://cors-anywhere.herokuapp.com/https://hello-wo.herokuapp.com/api',
+      token: ''
     }
   },
   components: {
@@ -40,6 +44,9 @@ export default {
     setMainWindow(e) {
       this.mainWindowState = e;
       console.log(e)
+    },
+    setToken(e) {
+      this.token = e;
     }
   }
 }

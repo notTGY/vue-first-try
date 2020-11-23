@@ -1,10 +1,10 @@
 <template>
 <div class="mainWindowContainer">
-<HomeWindow :api_url="this.api_url" v-if="state === 'home'"/>
-<MyTicketsWindow :api_url="this.api_url" v-else-if="state === 'my tickets'"/>
-<MyCompanyTicketsWindow :api_url="this.api_url" v-else-if="state === 'my company tickets'"/>
-<SendNewTicketWindow :api_url="this.api_url" v-else-if="state === 'send new ticket'"/>
-<SignInWindow :api_url="this.api_url" v-else-if="state === 'sign in'"/>
+<HomeWindow :token="token" :api_url="this.api_url" v-if="state === 'home'"/>
+<MyTicketsWindow :token="token" :api_url="this.api_url" v-else-if="state === 'my tickets'"/>
+<MyCompanyTicketsWindow :token="token" :api_url="this.api_url" v-else-if="state === 'my company tickets'"/>
+<SendNewTicketWindow :token="token" :api_url="this.api_url" v-else-if="state === 'send new ticket'"/>
+<SignInWindow :token="token" :api_url="this.api_url" :setToken="setToken" v-else-if="state === 'sign in'"/>
 </div>
 </template>
 
@@ -19,7 +19,9 @@ import SignInWindow from '@/components/windows/SignInWindow.vue'
 export default {
   props: {
     'state' : String,
-    'api_url': String
+    'api_url': String,
+    'setToken': Function,
+    'token': String
   },
   name: 'MainWindow',
   components: {
