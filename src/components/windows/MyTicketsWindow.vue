@@ -22,7 +22,10 @@ export default {
     }
   },
   mounted() {
-    fetch(this.api_url+'/tickets').then(response => response.json()).then((result) => {
+    console.log('hi')
+    fetch(this.api_url+'/tickets')
+    .then(response => response.json())
+    .then((result) => {
       this.tickets = result;
     });
   },

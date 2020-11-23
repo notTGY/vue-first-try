@@ -16,6 +16,8 @@ import Navbar from './components/Navbar.vue'
 import Sidebar from './components/Sidebar.vue'
 import MainWindow from './components/MainWindow.vue'
 
+//const heroku_url = 'https://cors-anywhere.herokuapp.com/https://hello-wo.herokuapp.com/api';
+//const localhost_url = 'localhost:1000/api'
 
 export default {
   name: 'App',
@@ -23,7 +25,7 @@ export default {
     return {
       shown: false,
       mainWindowState : 'home',
-      API_URL: 'https://cors-anywhere.herokuapp.com/https://hello-wo.herokuapp.com/api'
+      API_URL: 'http://localhost:1000/api'
     }
   },
   components: {
