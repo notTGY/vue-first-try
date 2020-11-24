@@ -46,7 +46,7 @@ export default {
         .then(response => response.json())
         .then(result => {
           this.token = result;
-          setToken(this.token);
+          this.setToken(this.token);
           console.log(this.token);
         });
     },
@@ -61,7 +61,7 @@ export default {
         .then(response => response.json())
         .then(result => {
           this.token = result;
-          setToken(this.token);
+          this.setToken(this.token);
           console.log(this.token);
         });
     }

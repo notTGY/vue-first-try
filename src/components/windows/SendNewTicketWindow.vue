@@ -37,7 +37,7 @@ export default {
   name: 'SendNewTicketWindow',
   methods: {
     addTicket() {
-      fetch(`${this.api_url}/tickets?token=${token}`, {
+      fetch(`${this.api_url}/tickets?token=${this.token}`, {
         method: 'POST',
         body: JSON.stringify(this.ticket),
         headers: {

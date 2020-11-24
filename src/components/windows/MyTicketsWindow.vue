@@ -24,7 +24,7 @@ export default {
   },
   mounted() {
     console.log('hi')
-    fetch(`${this.api_url}/tickets?token=${token}`)
+    fetch(`${this.api_url}/tickets?token=${this.token}`)
     .then(response => response.json())
     .then((result) => {
       this.tickets = result;
