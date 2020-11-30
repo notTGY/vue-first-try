@@ -29,9 +29,7 @@
 <script>
 export default {
   props: {
-    'api_url': String,
-    'setToken': Function,
-    'token': String
+    'api_url': String
   },
   name: 'SignInWindow',
   data: ()=>({
@@ -45,8 +43,7 @@ export default {
       fetch(`${this.api_url}/users?email=${this.email}&password=${this.password}`)
         .then(response => response.json())
         .then(result => {
-          this.token = result;
-          this.setToken(this.token);
+          window.localStorage.setItem('token', result)
           console.log(this.token);
         });
     },

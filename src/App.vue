@@ -9,8 +9,6 @@
       <MainWindow
         :state="mainWindowState"
         :api_url="this.API_URL"
-        :setToken="setToken"
-        :token="this.token"
       />
     </div>
   </div>
@@ -28,8 +26,7 @@ export default {
     return {
       shown: false,
       mainWindowState : 'home',
-      API_URL: 'https://cors-anywhere.herokuapp.com/https://hello-wo.herokuapp.com/api',
-      token: ''
+      API_URL: 'https://cors-anywhere.herokuapp.com/https://hello-wo.herokuapp.com/api'
     }
   },
   components: {
@@ -44,9 +41,6 @@ export default {
     setMainWindow(e) {
       this.mainWindowState = e;
       console.log(e)
-    },
-    setToken(e) {
-      this.token = e;
     }
   }
 }

@@ -7,8 +7,7 @@
 <script>
 export default {
   props: {
-    'api_url': String,
-    'token': String
+    'api_url': String
   },
   name: 'HomeWindow'
 }

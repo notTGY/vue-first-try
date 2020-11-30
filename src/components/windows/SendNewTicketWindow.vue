@@ -20,8 +20,7 @@
 <script>
 export default {
   props: {
-    'api_url': String,
-    'token': String
+    'api_url': String
   },
   data: ()=>{
     return {
@@ -37,7 +36,8 @@ export default {
   name: 'SendNewTicketWindow',
   methods: {
     addTicket() {
-      fetch(`${this.api_url}/tickets?token=${this.token}`, {
+      const token = window.localStorage.getItem('token');
+      fetch(`${this.api_url}/tickets?token=${token}`, {
         method: 'POST',
         body: JSON.stringify(this.ticket),
         headers: {
