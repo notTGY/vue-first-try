@@ -1,26 +1,30 @@
 <template>
 <div>
 <h1>Sign in page</h1>
+<div v-if="!this.areWeDone">
+  <div class="selector">
+    <button @click="showSignIn">Log in</button>
+    <button @click="showSignUp">Register</button>
+  </div>
 
-<div class="selector">
-  <button @click="showSignIn">Log in</button>
-  <button @click="showSignUp">Register</button>
+  <div v-if="this.whatWeDo === 'sign in'">
+    <form class="signInForm" @submit.prevent="signIn">
+      <input type="email" v-model="email" />
+      <input type="password" v-model="password" />
+      <button type="submit">Log in</button>
+    </form>
+  </div>
+
+  <div v-if="this.whatWeDo === 'sign up'">
+    <form class="signUpForm" @submit.prevent="signUp">
+      <input type="email" v-model="email" />
+      <input type="password" v-model="password" />
+      <button type="submit">Register</button>
+    </form>
+  </div>
 </div>
-
-<div v-if="this.whatWeDo === 'sign in'">
-  <form class="signInForm" @submit.prevent="signIn">
-    <input type="email" v-model="email" />
-    <input type="password" v-model="password" />
-    <button type="submit">Log in</button>
-  </form>
-</div>
-
-<div v-if="this.whatWeDo === 'sign up'">
-  <form class="signUpForm" @submit.prevent="signUp">
-    <input type="email" v-model="email" />
-    <input type="password" v-model="password" />
-    <button type="submit">Register</button>
-  </form>
+<div v-else>
+  <h2>You are successfully logged in!</h2>
 </div>
 
 </div>
@@ -36,7 +40,8 @@ export default {
     email: '',
     password: '',
     token: '',
-    whatWeDo: 'sign in'
+    whatWeDo: 'sign in',
+    areWeDone: false
   }),
   methods: {
     signIn() {
@@ -44,7 +49,7 @@ export default {
         .then(response => response.json())
         .then(result => {
           window.localStorage.setItem('token', result)
-          console.log(this.token);
+          this.areWeDone = true;
         });
     },
     showSignIn() {
@@ -59,7 +64,6 @@ export default {
         .then(result => {
           this.token = result;
           this.setToken(this.token);
-          console.log(this.token);
         });
     }
   }
@@ -78,6 +82,8 @@ button {
   color: #FFF;
   background-color: #55F;
   margin: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid #FFF;
 }
 .selector {
   display: flex;

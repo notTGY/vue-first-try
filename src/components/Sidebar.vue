@@ -3,9 +3,9 @@
     <button class="sidebar-element" @click="myTicketsClickHandler">
       My tickets
     </button>
-    <button class="sidebar-element" @click="myCompanyTicketsClickHandler">
+    <!--  <button class="sidebar-element" @click="myCompanyTicketsClickHandler">
       My company tickets
-    </button>
+    </button>   -->
     <button class="sidebar-element" @click="sendNewTicketClickHandler">
       Send new ticket
     </button>
