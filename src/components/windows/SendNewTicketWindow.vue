@@ -4,13 +4,36 @@
 
 <form @submit.prevent="addTicket" class="ticketForm">
   <div class="row">
-    <input type="text" v-model="ticket.filenames" />
-    <input type="text" v-model="ticket.type" />
-    <input type="text" v-model="ticket.email_to" />
+    <div class="input-field">
+      <input type="text" v-model="ticket.filenames" />
+    </div>
+
+
+    <select class="browser-default teal lighten-5" v-model="ticket.type">
+      <option value="bug" selected>bug</option>
+      <option value="feature request">feature request</option>
+      <option value="other mistake">other mistake</option>
+      <option value="hack">hack</option>
+    </select>
+
+
+    <div class="input-field">
+        <input type="text" v-model="ticket.email_to" />
+    </div>
+
   </div>
   <div class="row">
-    <textarea rows="3" v-model="ticket.text" />
-    <button type="submit"> Add ticket </button>
+
+    <div class="input-field">
+      <textarea rows="3" v-model="ticket.text" class="materialize-textarea" />
+    </div>
+
+    <button
+      type="submit"
+      class="btn-floating waves-effect waves-light brown darken-1"
+    >
+      Add ticket
+    </button>
   </div>
 </form>
 
@@ -27,7 +50,7 @@ export default {
       ticket: {
         mail: '',
         text: 'text',
-        type: 'type',
+        type: 'bug',
         filenames: 'filenames',
         email_to: 'email to'
       }
@@ -49,7 +72,7 @@ export default {
       }).catch(e=>{console.error(e)})
       this.ticket.filenames = 'filenames';
       this.ticket.text = 'text';
-      this.ticket.type = 'type';
+      this.ticket.type = 'bug';
       this.ticket.email_to = 'email to';
     }
   }
@@ -70,10 +93,19 @@ export default {
 }
 button {
   margin-left: 2rem;
-  width: 5rem;
-  height: 2rem;
+  width: 8rem;
+  height: 4rem;
+  border-radius: 10px;
 }
 input {
   margin-right: 1rem;
+}
+select {
+  width: 10rem;
+  margin: 2rem;
+  border: 1px solid #000;
+}
+textarea {
+  margin-left: 0px;
 }
 </style>

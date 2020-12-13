@@ -8,7 +8,12 @@
 
 <div v-else-if="this.loaded">
   <div v-for="(data, i) in tickets" :key="i">
-    <Ticket :ticketData="data" />
+    <Ticket
+      :setTicketId="setTicketId"
+      :setMainWindow="setMainWindow"
+      :ticketData="data"
+      :api_url="api_url"
+    />
   </div>
 </div>
 
@@ -23,7 +28,9 @@ import Loading from '@/components/Loading.vue'
 
 export default {
   props: {
-    'api_url': String
+    'api_url': String,
+    'setTicketId': Function,
+    'setMainWindow': Function
   },
   data: () => {
     return {

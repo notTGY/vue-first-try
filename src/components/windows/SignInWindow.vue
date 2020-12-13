@@ -3,15 +3,30 @@
 <h1>Sign in page</h1>
 <div v-if="!this.areWeDone">
   <div class="selector">
-    <button @click="showSignIn">Log in</button>
-    <button @click="showSignUp">Register</button>
+    <button
+      @click="showSignIn"
+      class="btn-floating waves-effect waves-light blue-grey"
+    >
+      Log in
+    </button>
+    <button
+      @click="showSignUp"
+      class="btn-floating waves-effect waves-light blue-grey"
+    >
+      Register
+    </button>
   </div>
 
   <div v-if="this.whatWeDo === 'sign in'">
     <form class="signInForm" @submit.prevent="signIn">
       <input type="email" v-model="email" />
       <input type="password" v-model="password" />
-      <button type="submit">Log in</button>
+      <button
+        type="submit"
+        class="btn-floating waves-effect waves-light blue-grey"
+      >
+        Log in
+      </button>
     </form>
   </div>
 
@@ -19,7 +34,12 @@
     <form class="signUpForm" @submit.prevent="signUp">
       <input type="email" v-model="email" />
       <input type="password" v-model="password" />
-      <button type="submit">Register</button>
+      <button
+        type="submit"
+        class="btn-floating waves-effect waves-light blue-grey darken-2"
+      >
+        Register
+      </button>
     </form>
   </div>
 </div>
@@ -33,7 +53,8 @@
 <script>
 export default {
   props: {
-    'api_url': String
+    'api_url': String,
+    'updateEmail': Function
   },
   name: 'SignInWindow',
   data: ()=>({
@@ -55,6 +76,7 @@ export default {
         .then(response => response.json())
         .then(result => {
           window.localStorage.setItem('token', result)
+          this.updateEmail(this.email);
           this.areWeDone = true;
         });
     },
@@ -91,6 +113,7 @@ button {
   color: #FFF;
   background-color: #55F;
   margin: 0.5rem;
+  width: 5rem;
   border-radius: 10px;
   border: 1px solid #FFF;
 }

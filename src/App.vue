@@ -3,12 +3,19 @@
     <Navbar
       :toggleSidebar="updateS"
       :setMainWindow="setMainWindow"
+      :email="email"
     />
     <div class="vertical-align">
-      <Sidebar :shown="this.shown" :setMainWindow="setMainWindow" />
+      <Sidebar
+        :shown="this.shown"
+        :toggleSidebar="updateS"
+        :setMainWindow="setMainWindow"
+      />
       <MainWindow
         :state="mainWindowState"
+        :setMainWindow="setMainWindow"
         :api_url="this.API_URL"
+        :updateEmail="updateEmail"
       />
     </div>
   </div>
@@ -26,6 +33,7 @@ export default {
     return {
       shown: false,
       mainWindowState : 'home',
+      email: '',
       API_URL: 'https://cors-anywhere.herokuapp.com/https://hello-wo.herokuapp.com/api'
       //API_URL: 'http://localhost:1000/api'
     }
@@ -39,9 +47,26 @@ export default {
     updateS () {
       this.shown = !this.shown;
     },
+    updateEmail (newEmail) {
+      this.email = newEmail;
+    },
     setMainWindow(e) {
       this.mainWindowState = e;
       console.log(e)
+    }
+  },
+  mounted() {
+    const token = window.localStorage.getItem('token');
+    if (token) {
+      fetch(`${this.API_URL}/userCheck?token=${token}`/*, {
+        method: 'GET',
+        mode: 'no-cors'
+      }*/
+    ).then(response => response.json()
+    ).then(result => {
+          console.log(result);
+          this.email = result;
+        });
     }
   }
 }
