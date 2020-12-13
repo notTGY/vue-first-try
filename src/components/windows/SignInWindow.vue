@@ -45,7 +45,13 @@ export default {
   }),
   methods: {
     signIn() {
-      fetch(`${this.api_url}/users?email=${this.email}&password=${this.password}`)
+      fetch(`${this.api_url}/users?email=${this.email}&password=${this.password}`/*,{
+        method: 'GET',
+        mode: 'no-cors',
+        headers: {
+          'Origin' : 'localhost'
+        }
+      }*/)
         .then(response => response.json())
         .then(result => {
           window.localStorage.setItem('token', result)
@@ -59,7 +65,10 @@ export default {
       this.whatWeDo = 'sign up';
     },
     signUp () {
-      fetch(`${this.api_url}/usersReg?email=${this.email}&password=${this.password}`)
+      fetch(`${this.api_url}/usersReg?email=${this.email}&password=${this.password}`, {
+        method: 'GET',
+        mode: 'no-cors'
+      })
         .then(response => response.json())
         .then(result => {
           this.token = result;

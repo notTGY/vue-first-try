@@ -37,9 +37,12 @@ export default {
   methods: {
     addTicket() {
       const token = window.localStorage.getItem('token');
+      let obj = this.ticket;
+      obj.token = token;
       fetch(`${this.api_url}/tickets?token=${token}`, {
         method: 'POST',
-        body: JSON.stringify(this.ticket),
+        //mode: 'no-cors',
+        body: JSON.stringify(obj),
         headers: {
           'content-type': 'application/json',
         }

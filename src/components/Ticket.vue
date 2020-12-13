@@ -37,6 +37,9 @@ export default {
     sendBackTicket() {
       console.log('fine');
     }
+  },
+  mounted() {
+    console.log(this.ticketData);
   }
 }
 </script>

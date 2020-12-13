@@ -7,7 +7,7 @@
 </div>
 
 <div v-else-if="this.loaded">
-  <div v-for="data in tickets" :key="data._id">
+  <div v-for="(data, i) in tickets" :key="i">
     <Ticket :ticketData="data" />
   </div>
 </div>
@@ -33,11 +33,12 @@ export default {
   },
   mounted() {
     const token = window.localStorage.getItem('token');
-    fetch(`${this.api_url}/tickets?token=${token}`)
+    fetch(`${this.api_url}/tickets?token=${token}`/*, {
+      mode: 'no-cors'
+    }*/)
     .then(response => response.json())
     .then((result) => {
       this.tickets = result;
-      console.log(result);
       this.loaded = true;
     });
   },

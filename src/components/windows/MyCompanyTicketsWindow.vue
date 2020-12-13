@@ -28,7 +28,9 @@ export default {
   },
   mounted() {
     const token = window.localStorage.getItem('token');
-    fetch(`${this.api_url}/tickets?token=${token}`)
+    fetch(`${this.api_url}/tickets?token=${token}`, {
+      mode: 'no-cors'
+    })
     .then(response => response.json())
     .then((result) => {
       this.tickets = result;

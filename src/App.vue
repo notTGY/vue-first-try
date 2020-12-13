@@ -27,6 +27,7 @@ export default {
       shown: false,
       mainWindowState : 'home',
       API_URL: 'https://cors-anywhere.herokuapp.com/https://hello-wo.herokuapp.com/api'
+      //API_URL: 'http://localhost:1000/api'
     }
   },
   components: {
