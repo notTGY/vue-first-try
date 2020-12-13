@@ -19,7 +19,7 @@
       Sign up/Sign in
     </button>
 
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <!--<img alt="Vue logo" src="../assets/logo.png" />-->
   </div>
 </div>
 </template>
